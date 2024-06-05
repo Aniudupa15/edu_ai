@@ -18,6 +18,13 @@ dependencies:
   cupertino_icons: ^1.0.6
   firebase_core: ^2.32.0
   firebase_auth: ^4.20.0
+  font_awesome_flutter: ^10.7.0
+  cloud_firestore: ^4.17.5
+  flutter_gemini: 2.0.4
+  dash_chat_2: ^0.0.20
+  youtube_player_flutter: ^8.0.0
+  flutter_inappwebview: ^5.3.2
+  collection: ^1.16.0
 
 # Development dependencies
 dev_dependencies:

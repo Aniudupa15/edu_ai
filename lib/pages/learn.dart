@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../components/chat_bot.dart';
+import '../../components/chat_bot.dart';
 
 class Screen extends StatefulWidget {
   const Screen({super.key});

@@ -1,5 +1,5 @@
 import 'package:edu_ai/auth/login_or_register.dart';
-import 'package:edu_ai/home.dart';
+import 'package:edu_ai/pages/dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +12,7 @@ class AuthPage extends StatelessWidget {
       body: StreamBuilder(stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot){
         if(snapshot.hasData){
-          return const HomeScreen();
+          return HomeScreen();
         }
         else{
           return const LoginOrRegister();
