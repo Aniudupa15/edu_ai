@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: Stack(
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 25),
                       // App name
-                      Text(
+                      const Text(
                         "E D U L I N K",
                         style: TextStyle(
                           fontSize: 20,
@@ -92,25 +92,12 @@ class _LoginPageState extends State<LoginPage> {
                         obscuretext: true,
                         controller: passwordController,
                       ),
-                      const SizedBox(height: 25),
+                      const SizedBox(height: 5),
 
                       // Faculty Checkbox and Forgot Password
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Row(
-                            children: [
-                              Checkbox(
-                                value: _isChecked,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _isChecked = value!;
-                                  });
-                                },
-                              ),
-                              const Text('Faculty'),
-                            ],
-                          ),
                           Text(
                             "Forgot Password?",
                             style: TextStyle(
