@@ -25,7 +25,31 @@ dependencies:
   youtube_player_flutter: ^8.0.0
   flutter_inappwebview: ^5.3.2
   collection: ^1.16.0
-
+  http: ^1.2.1
+  provider: ^6.0.3
+  shared_preferences: ^2.0.13
+  flutter_local_notifications: ^12.0.4
+  intl: ^0.18.0
+  timezone: ^0.9.3
+  audioplayers: ^6.0.0
+  flutter_launcher_icons: "^0.13.1"
+flutter_launcher_icons:
+    android: "launcher_icon"
+    ios: true
+    image_path: "assets/logo.png"
+    min_sdk_android: 21 # android min sdk min:16, default 21
+    web:
+      generate: true
+      image_path: "assets/logo.png"
+      background_color: "#hexcode"
+      theme_color: "#hexcode"
+    windows:
+      generate: true
+      image_path: "logo.jpg"
+      icon_size: 48 # min:48, max:256, default: 48
+    macos:
+      generate: true
+      image_path: "assets/logo.png"
 # Development dependencies
 dev_dependencies:
   flutter_test:

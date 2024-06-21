@@ -1,7 +1,8 @@
-import 'dart:io';
-
 import 'package:edu_ai/auth/auth.dart';
-import 'package:edu_ai/components/chat_bot.dart';
+import 'package:edu_ai/pages/meditation_timer_screen.dart';
+import 'package:edu_ai/pages/quiz.dart';
+import 'package:edu_ai/pages/reminder_screen.dart';
+import 'package:edu_ai/pages/skillDev.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:edu_ai/auth/login_or_register.dart';
@@ -22,6 +23,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,7 +37,10 @@ class MyApp extends StatelessWidget {
       routes: {
         'login_or_register': (context) => const LoginOrRegister(),
         'auth': (context) => const AuthPage(),
-        'chat_bot': (context) => const ChatBot(),
+        'quiz': (context) => const QuizApp(),
+        'skill': (context) => const SkillDev(),
+        '/reminder': (context) => ReminderScreen(),
+        '/timer': (context) => MeditationTimerScreen(),
         // ... other routes
       },
     );

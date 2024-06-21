@@ -36,21 +36,23 @@ class _RegisterPageState extends State<RegisterPage> {
       Navigator.pop(context);
       displayMessageToUser("Passwords don't match!", context);
       return;
-    }
-    else {
+    } else {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
           email: emailController.text,
           password: passwordController.text,
         );
-        createUserDocument(userCredential);
+        await createUserDocument(userCredential);
 
         // Close the loading dialog
-        Navigator.pop(context);
+        if (context.mounted) Navigator.pop(context);
 
         // Navigate back or show success message
-        if (context.mounted)Navigator.pop(context);
+        if (context.mounted) {
+          Navigator.popUntil(context, (route) => route.isFirst);
+          displayMessageToUser('Registration successful!', context);
+        }
       } on FirebaseAuthException catch (e) {
         Navigator.pop(context);
         String message;
@@ -74,17 +76,19 @@ class _RegisterPageState extends State<RegisterPage> {
       }
     }
   }
+
   Future<void> createUserDocument(UserCredential? userCredential) async {
-    if(userCredential != null && userCredential.user != null){
+    if (userCredential != null && userCredential.user != null) {
       await FirebaseFirestore.instance
           .collection("Users")
           .doc(userCredential.user!.email)
           .set({
-        'email':userCredential.user!.email,
-        'username':usernameController.text,
+        'email': userCredential.user!.email,
+        'username': usernameController.text,
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,12 +115,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 25),
                 // App name
                 const Text(
-                  "E D U L I N K",
+                  "E D U - A I",
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                   ),
-
                 ),
                 const SizedBox(height: 25),
                 // Username TextField
@@ -176,4 +179,14 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+}
+
+// Helper function to display messages
+void displayMessageToUser(String message, BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      duration: const Duration(seconds: 3),
+    ),
+  );
 }

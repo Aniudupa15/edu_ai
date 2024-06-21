@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 25),
                       // App name
                       const Text(
-                        "E D U L I N K",
+                        "E D U - A I",
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,

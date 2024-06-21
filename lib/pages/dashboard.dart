@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: Text('EDULINK',style: TextStyle(color: Colors.white,fontSize: 20),),
+        title: Text('E D U - A I ',style: TextStyle(color: Colors.white,fontSize: 20),),
         backgroundColor: Colors.deepPurple,
         actions: [
           IconButton(

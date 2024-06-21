@@ -1,4 +1,5 @@
 import 'package:dash_chat_2/dash_chat_2.dart';
+import 'package:edu_ai/summary/summaryPython.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:collection/collection.dart'; // Add this import for firstOrNull
 
-class ChatBot extends StatefulWidget {
+class ChatBotPython extends StatefulWidget {
   static const customSwatch = MaterialColor(
     0xFFFF5252,
     <int, Color>{
@@ -22,13 +23,13 @@ class ChatBot extends StatefulWidget {
       900: Color(0xFFB71C1C),
     },
   );
-  const ChatBot({super.key});
+  const ChatBotPython({super.key});
 
   @override
-  State<ChatBot> createState() => _ChatBotState();
+  State<ChatBotPython> createState() => _ChatBotPythonState();
 }
 
-class _ChatBotState extends State<ChatBot> {
+class _ChatBotPythonState extends State<ChatBotPython> {
   final Gemini gemini = Gemini.instance;
   List<ChatMessage> messages = [];
 
@@ -39,7 +40,7 @@ class _ChatBotState extends State<ChatBot> {
     super.initState();
 
     _youtubeController = YoutubePlayerController(
-      initialVideoId: 'lNQJNImBsKY', // Replace with a known working video ID for testing
+      initialVideoId: 'rfscVS0vtbw', // Replace with a known working video ID for testing
       flags: const YoutubePlayerFlags(
         autoPlay: false,
         mute: false,
@@ -98,6 +99,15 @@ class _ChatBotState extends State<ChatBot> {
                 child: _buildUI(),
               ),
             ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SummaryPython()),
+              );
+            },
+            child: Text('Go to Summary Page'),
           ),
         ],
       ),
