@@ -8,7 +8,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:edu_ai/auth/login_or_register.dart';
 import 'package:edu_ai/auth/firebase_options.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
-
 import 'components/consts.dart';
 
 void main() async {

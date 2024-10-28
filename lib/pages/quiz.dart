@@ -146,7 +146,7 @@ class _ChatScreenState extends State<ChatScreen> {
             Flexible(
               child: TextField(
                 controller: _controller,
-                onSubmitted: _is BotTyping ? null : _handleSubmitted,
+                //onSubmitted: _is BotTyping ? null : _handleSubmitted,
                 decoration: const InputDecoration.collapsed(hintText: "Enter your answer"),
               ),
             ),
@@ -189,13 +189,13 @@ class ChatMessage extends StatelessWidget {
               children: <Widget>[
                 Text(
                     isBot ? "Bot" : "User",
-                    style: Theme.of(context).textTheme.subtitle1!.copyWith(fontSize: 28.0)
+                   // style: Theme.of(context).textTheme.subtitle1!.copyWith(fontSize: 28.0)
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 5.0),
                   child: Text(
                       text,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 26.0)
+                      //style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 26.0)
                   ),
                 ),
               ],

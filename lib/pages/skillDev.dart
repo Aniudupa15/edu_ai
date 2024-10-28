@@ -194,6 +194,7 @@ class ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var subtitle1;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
@@ -213,7 +214,8 @@ class ChatMessage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(isBot ? "Bot" : "User",
-                    style: Theme.of(context).textTheme.subtitle1),
+                    //style: Theme.of(context).textTheme.subtitle1
+                    ),
                 Container(
                   margin: const EdgeInsets.only(top: 5.0),
                   child: Text(
