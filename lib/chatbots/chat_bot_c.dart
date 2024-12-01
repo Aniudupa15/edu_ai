@@ -32,15 +32,22 @@ class ChatBotC extends StatefulWidget {
 class _ChatBotCState extends State<ChatBotC> {
   final Gemini gemini = Gemini.instance;
   List<ChatMessage> messages = [];
+  String selectedLevel = "Beginner";
 
   late YoutubePlayerController _youtubeController;
+
+  final Map<String, List<String>> videoUrls = {
+    "Beginner": ["dTp0c41XnrQ",], // Replace with actual video IDs
+    "Moderate": ["87SH2Cn0s9A",],
+    "Hard": ["KJgsSFOSQv0",],
+  };
 
   @override
   void initState() {
     super.initState();
 
     _youtubeController = YoutubePlayerController(
-      initialVideoId: '87SH2Cn0s9A', // Replace with a known working video ID for testing
+      initialVideoId: videoUrls[selectedLevel]![0], // Default to Beginner level
       flags: const YoutubePlayerFlags(
         autoPlay: false,
         mute: false,
@@ -66,7 +73,7 @@ class _ChatBotCState extends State<ChatBotC> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('E D U - A I'),
+        title: const Text('EDULINK'),
         backgroundColor: Colors.deepPurple,
         actions: [
           IconButton(onPressed: logout, icon: const Icon(Icons.logout)),
@@ -74,6 +81,23 @@ class _ChatBotCState extends State<ChatBotC> {
       ),
       body: Column(
         children: [
+          DropdownButton<String>(
+            value: selectedLevel,
+            items: videoUrls.keys
+                .map((level) => DropdownMenuItem(
+              value: level,
+              child: Text(level),
+            ))
+                .toList(),
+            onChanged: (value) {
+              if (value != null) {
+                setState(() {
+                  selectedLevel = value;
+                  _youtubeController.load(videoUrls[selectedLevel]![0]);
+                });
+              }
+            },
+          ),
           Container(
             color: Colors.blue,
             child: YoutubePlayerBuilder(
@@ -107,7 +131,7 @@ class _ChatBotCState extends State<ChatBotC> {
                 MaterialPageRoute(builder: (context) => SummaryC()),
               );
             },
-            child: Text('Go to Summary Page'),
+            child: const Text('Go to Summary Page'),
           ),
         ],
       ),
@@ -133,18 +157,18 @@ class _ChatBotCState extends State<ChatBotC> {
         if (lastMessage != null && lastMessage.user == geminiUser) {
           lastMessage = messages.removeAt(0);
           String response = event.content?.parts
-              ?.fold("", (previous, current) => "$previous${current.text}") ?? "";
+              ?.fold("", (previous, current) => "$previous${current.text}") ??
+              "";
           lastMessage.text += response;
           setState(() {
             messages = [lastMessage!, ...messages];
           });
         } else {
           String response = event.content?.parts
-              ?.fold("", (previous, current) => "$previous${current.text}") ?? "";
+              ?.fold("", (previous, current) => "$previous${current.text}") ??
+              "";
           ChatMessage message = ChatMessage(
-              user: geminiUser,
-              createdAt: DateTime.now(),
-              text: response);
+              user: geminiUser, createdAt: DateTime.now(), text: response);
           setState(() {
             messages = [message, ...messages];
           });

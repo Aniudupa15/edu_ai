@@ -1,7 +1,6 @@
 import 'package:edu_ai/auth/auth.dart';
 import 'package:edu_ai/pages/meditation_timer_screen.dart';
 import 'package:edu_ai/pages/quiz.dart';
-import 'package:edu_ai/pages/reminder_screen.dart';
 import 'package:edu_ai/pages/skillDev.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -38,7 +37,6 @@ class MyApp extends StatelessWidget {
         'auth': (context) => const AuthPage(),
         'quiz': (context) => const QuizApp(),
         'skill': (context) => const SkillDev(),
-        '/reminder': (context) => ReminderScreen(),
         '/timer': (context) => MeditationTimerScreen(),
         // ... other routes
       },

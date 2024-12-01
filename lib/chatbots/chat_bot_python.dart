@@ -32,15 +32,22 @@ class ChatBotPython extends StatefulWidget {
 class _ChatBotPythonState extends State<ChatBotPython> {
   final Gemini gemini = Gemini.instance;
   List<ChatMessage> messages = [];
+  String selectedLevel = "Beginner";
 
   late YoutubePlayerController _youtubeController;
+
+  final Map<String, List<String>> videoUrls = {
+    "Beginner": ["kqtD5dpn9C8",], // Replace with actual video IDs
+    "Moderate": ["GwIo3gDZCVQ",],
+    "Hard": ["XKHEtdqhLK8",],
+  };
 
   @override
   void initState() {
     super.initState();
 
     _youtubeController = YoutubePlayerController(
-      initialVideoId: 'rfscVS0vtbw', // Replace with a known working video ID for testing
+      initialVideoId: videoUrls[selectedLevel]![0], // Default to Beginner level
       flags: const YoutubePlayerFlags(
         autoPlay: false,
         mute: false,
@@ -74,6 +81,23 @@ class _ChatBotPythonState extends State<ChatBotPython> {
       ),
       body: Column(
         children: [
+          DropdownButton<String>(
+            value: selectedLevel,
+            items: videoUrls.keys
+                .map((level) => DropdownMenuItem(
+              value: level,
+              child: Text(level),
+            ))
+                .toList(),
+            onChanged: (value) {
+              if (value != null) {
+                setState(() {
+                  selectedLevel = value;
+                  _youtubeController.load(videoUrls[selectedLevel]![0]);
+                });
+              }
+            },
+          ),
           Container(
             color: Colors.blue,
             child: YoutubePlayerBuilder(
@@ -107,7 +131,7 @@ class _ChatBotPythonState extends State<ChatBotPython> {
                 MaterialPageRoute(builder: (context) => SummaryPython()),
               );
             },
-            child: Text('Go to Summary Page'),
+            child: const Text('Go to Summary Page'),
           ),
         ],
       ),

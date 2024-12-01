@@ -79,26 +79,26 @@ class _ScreenState extends State<Screen> {
                       fontWeight: FontWeight.bold),
                 )),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 30.0, right: 5, left: 5),
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    minimumSize: const Size(double.infinity, 70)),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const mentalHealth()),
-                  );
-                },
-                child: const Text(
-                  "Mental Health",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                )),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 30.0, right: 5, left: 5),
+          //   child: ElevatedButton(
+          //       style: ElevatedButton.styleFrom(
+          //           backgroundColor: Colors.blue,
+          //           minimumSize: const Size(double.infinity, 70)),
+          //       onPressed: () {
+          //         Navigator.push(
+          //           context,
+          //           MaterialPageRoute(builder: (context) => const mentalHealth()),
+          //         );
+          //       },
+          //       child: const Text(
+          //         "Mental Health",
+          //         style: TextStyle(
+          //             color: Colors.white,
+          //             fontSize: 20,
+          //             fontWeight: FontWeight.bold),
+          //       )),
+          // ),
         ],
       ),
     );
